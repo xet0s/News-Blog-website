@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{content.title}}{%endblock title%}
+
+{%block content%}
+
+    <article>
+    
+        <h1>{{contents.title}}</h1>
+    
+            <p class="user">Yazan : {{contents.author.username}}</p>
+            <p class="date">Yayın tarihi : {{contents.created_at}}</p>
+
+        <hr>
+
+        <div class="main_content">
+            {{contents.content}}
+        </div>
+        <a href="{% url  'content_list'%}">Geri Dön</a>
+    </article>
+
+{%endblock content%}

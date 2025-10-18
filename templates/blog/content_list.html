@@ -5,8 +5,8 @@
     {% for content in contents%} <div class="content-card">
 
         <h2>{{content.title}}</h2>
-        <p>Lorem, ipsum.</p>
-        <p>Lorem, ipsum dolor.</p>
+        <p class="user">{{content.author.username}}</p>
+        <p class="date">{{content.created_at}}</p>
         <a href="{%url 'content_detail' content.id%}">Detay</a>
     </div>
 
