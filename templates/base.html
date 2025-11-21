@@ -1,23 +1,66 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Anasayfa{% endblock title %}</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="{% url 'content_list' %}">content_list</a>
-        </nav>
+    <!DOCTYPE html>
+    <html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+        crossorigin="anonymous">
+        <title>{% block title %}Anasayfa{% endblock title %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <div class="site-container">
+            <header>
+                <div class="logo">
+                    Logo Alanı
+                </div>
+                <nav class="navigator">
+                    <a href="{% url 'content_list' %}" class="nav-button">Anasayfa</a>
+                    {% if user.is_authenticated %}
+                        {% if user.groups.all %}
+                            {% for group in user.groups.all %}
+                                {% if group.name == 'editor' %}
+                                <form action="{% url 'add_content' %}" style="display: inline;">
+                                    <button type="submit" class="nav-button">İçerik Ekle</button>
+                                </form>
+                                {% endif %} 
+                            {% endfor %}
+                        {% endif %}
+                    <a href="#" class="nav-button">{{user.username}}</a>
+                        <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                            {%csrf_token%}
+                            <button type="submit" class="nav-button">Çıkış yap</button>
+                        </form>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="nav-button">Giriş Yap</a> 
+                    {% endif %}
+                </nav>
+            </header>
+            <main class="main-content">
+                {% block content %}
+                {% endblock content %}
+            </main>
+            
+            <aside class="aside-bar">
+                <h3>Etiketler</h3>
+                <div class="list-group mt-3">
+                    {% for tag in ALL_TAGS %}
+                    <a href="{% url 'content_by_tag' tag.slug%}" class="list-group-item list-group-item-action">{{tag.name}}</a>
+                {% empty %}
+                    <p>Etiket bulunmamaktadır</p>
+                {% endfor %}
+                </div>
+            </aside>
 
-        <main>
-            {% block content %}
-                {% endblock content%}
-        </main>
-        <footer>
-            <p>Copyright</p>
-        </footer>
-    </header>
-</body>
-</html>
+            <footer class="footer-bar">
+                <p>footer</p>
+            </footer>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+        integrity="..." 
+        crossorigin="anonymous"></script>
+    </div> </body>
+    </html>

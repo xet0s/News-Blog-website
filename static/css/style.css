@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box; 
+}
+
+.row{
+    margin-left: 0  !important; 
+    margin-right: 0 !important;
+    display: flex;
+}
+body {
+    background-color: #f4f4f4; 
+    font-family: sans-serif;
+    padding-top: 0; 
+    margin: 0;
+}
+.site-container {
+    display: grid;
+    grid-template-columns: 1fr 300px; /* Sütunlar: Content (esnek) ve Sidebar (300px) */
+    grid-template-areas: 
+        "header     header"
+        "content    sidebar"
+        "footer     footer";
+    
+    gap: 25px;
+    
+    width: 90%;
+    max-width: 1400px;
+    margin: 20px auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    grid-area: header;
+    background-color: rgb(0, 234, 255);
+    gap: 30px;
+    padding: 15px 30px;
+    border-radius: 5px; 
+    
+}
+.logo{
+    margin-right: auto;
+    display: inline;
+    min-width: 30px;
+}
+
+.navigator{
+    display: flex;
+    grid-area: navbar;
+    align-items: center;
+    background-color: rgb(101, 74, 126);
+    
+    padding: 20px;
+    padding-right: 30px;
+    border-radius: 5px  ;
+    gap: 10px;
+
+}
+.nav-button, .navigator a{
+    background: none ;
+    border: none;
+
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: larger;
+    cursor:pointer;
+    text-decoration: none;
+    color: #ffffff;
+    
+    transition: background-color 0.8s ease,color 0.8s ease;
+    
+}
+.nav-button:hover, .navigator a:hover{
+    background-color: rgb(210, 161, 255);
+    color: white;
+    text-decoration: none;
+}
+
+aside{  
+    grid-area: sidebar;
+    background-color: rgb(102, 102, 102);
+    padding: 20px;  
+    border-radius: 5px;
+    min-height: 400px;
+}
+
+.footer-bar{
+    display: flex;
+    grid-area: footer;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+main{
+    grid-area: content;
+    display: initial;
+    padding: 20px;
+    overflow-x: hidden;
+    margin-bottom: 50px;
+    background-color: white; 
+    border-radius: 5px;
+}
+.card{
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 1px);
+}
+.card-body{
+    padding: 25px;
+}
+
+p{
+    line-height: 1.6;
+    color: #444444;
+}

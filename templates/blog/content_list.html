@@ -1,17 +1,71 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
-    <h1>Content Page</h1>
-    {% for content in contents%} <div class="content-card">
 
-        <h2>{{content.title}}</h2>
-        <p class="user">{{content.author.username}}</p>
-        <p class="date">{{content.created_at}}</p>
-        <a href="{%url 'content_detail' content.id%}">Detay</a>
-    </div>
-
-    <hr>
-    {%empty%}
-        <p>Not Found</p>
-    {%endfor%}
-{%endblock content%}
+        {% if current_tag %}
+            <h2 class="mb-4"> {{current_tag.name}} Etiketine Ait İçerikler</h2>
+        {% else %}
+            <h2 class="mb-4">Anasayfa</h2>
+        {% endif %}
+        <div class="row">
+            {% for content in contents%}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{content.title}}</h5>
+                        <p class="card-text text-muted">{{content.content|truncatewords:60}}</p>
+                    </div>
+                    <div class="card-footer bg-white border-top">
+                        {% if content.post_tag%}
+                        <a href="{% url 'content_by_tag' content.post_tag.slug %}" class="btn btn-outline-info btn-sm me-2">{{content.post_tag.name}}</a>
+                        {% endif %}
+                        <a href="{% url 'content_detail' content.id %}" class="btn btn-primary btn-sm">Devamı...</a>
+                        <small class="d-block mt-2 text-secondary">
+                            Yazar: {{ content.author.username }} | {{ content.created_at|date:"d M Y" }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="alert alert-warning">Henüz onaylanmamış içerik bulunmamaktadır</p>
+                </div>
+            {% endfor %}
+        </div>
+            {% with is_filtered=current_tag %}
+                {% if is_filtered %}    
+                    {% url 'content_by_tag' is_filtered.slug as base_url %}
+                {% else %}
+                    {% url 'content_list' as base_url %}
+                {% endif %}
+                {% if contents.has_other_pages %}
+                <div class="row justify-content-center mt-5">
+                    <div class="col-auto">
+                        <nav aria-label="Sayfa Navigasyonu">
+                            <ul class="pagination">
+                                <li class="page-item {% if not contents.has_previous %}disabled{% endif %}">
+                                    <a class="page-link" 
+                                        href="{{base_url}}{% if contents.has_previous %}?page={{ contents.previous_page_number }}{% endif %}"
+                                        aria-label="Previous">
+                                        &laquo;
+                                    </a>
+                                </li>
+                                {% for i in contents.paginator.page_range %}
+                                    <li class="page-item {% if contents.number == i %}active{% endif %}">
+                                        <a class="page-link" href="{{base_url}}?page={{i}}">{{i}}</a>
+                                    </li>
+                                {% endfor %}
+                                <li class="page-item {% if not contents.has_next %}disabled{% endif %}">
+                                    <a class="page-link" 
+                                    href="{{base_url}}{% if contents.has_next %}?page={{ contents.next_page_number }}{% endif %}" 
+                                    aria-label="Next">
+                                    &raquo;
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            {% endif %}
+        {% endwith %}
+{% endblock content %}  

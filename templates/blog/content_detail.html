@@ -6,15 +6,15 @@
 
     <article>
     
-        <h1>{{contents.title}}</h1>
+        <h1>{{content.title}}</h1>
     
-            <p class="user">Yazan : {{contents.author.username}}</p>
-            <p class="date">Yayın tarihi : {{contents.created_at}}</p>
+            <p class="user">Yazan : {{content.author.username}}</p>
+            <p class="date">Yayın tarihi : {{content.created_at}}</p>
 
         <hr>
 
         <div class="main_content">
-            {{contents.content}}
+            {{content.content}}
         </div>
         <a href="{% url  'content_list'%}">Geri Dön</a>
     </article>

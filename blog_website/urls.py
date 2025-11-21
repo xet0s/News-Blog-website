@@ -18,12 +18,15 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-
-
+from django.contrib.auth import views as auth_views
+from blog import views as blog_views
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),#admin panel
 
-    path("",include("blog.urls")),
+    path("",include("blog.urls")),  #ana site url'si
+    path('kayit/', blog_views.register, name='register'),   #Kayıt yolu
+    path("giris/", auth_views.LoginView.as_view(template_name="blog/login.html"),name="login"), #giriş yolu
+    path("cikis/", auth_views.LogoutView.as_view(next_page="/"),name="logout"),#çıkış yolu
 ]
 
 if settings.DEBUG:

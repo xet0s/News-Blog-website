@@ -1,0 +1,23 @@
+# Python / Django Tarafı
+###########################
+# Sanal ortam (Virtual Environment)
+venv/
+env/
+
+# Python Bytecode (Derlenmiş geçici dosyalar)
+__pycache__/
+*.pyc
+
+# Projeye ait yerel/hassas veriler (MySQL kullansanız bile)
+###########################
+# Yüklenen kullanıcı resimleri ve dosyaları
+/media
+
+# Django'nun topladığı statik dosyalar (collectstatic sonucu)
+/static_collected
+
+# Lokal ayarlar ve gizli anahtarlar (SECRET_KEY, DB parolaları)
+# Bu dosyalar ASLA GitHub'a yüklenmemelidir.
+settings_local.py
+local_settings.py
+.env

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="login-contaiher">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Giriş Yap</legend>
+                {{ form.as_p}}
+            </fieldset>
+            <button type="submit">Giriş Yap</button>
+        </form>
+        <small class="text_muted">
+            Eğer hesabınız yoksa <a href="{% url 'register'%}">Kayıt Olun</a>
+         </small>
+    </div>
+{% endblock content%}

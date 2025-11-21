@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Yeni içerik ekle{% endblock title%}
+
+{% block content %}
+
+    <h2>Yeni İçerik Ekle</h2>
+    <div class="content-form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <fieldset>
+                <legend>İçerik Detayı</legend>
+                {{form.as_p}}
+            </fieldset>
+
+            <button type="submit" class="btn-succes">Gönder</button>
+        </form>
+    </div>
+{% endblock content %}
