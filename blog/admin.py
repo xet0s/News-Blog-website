@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Tag, Content
+from django.utils.html import format_html
 # Register your models here.
 
 
@@ -15,9 +16,15 @@ class admin_Content(admin.ModelAdmin):
     list_display=("title","admin_approve","created_at","post_tag")         #admin panelinde content çağrıldığında görünecek kisim
     list_filter=("admin_approve","post_tag",)                              #admin panelinde content yayın kısmını filtreleyen kısım
     search_fields=("title","author__username","post_tag__name","post_tag") #arama filtresi
-    fields = ('title', 'content', 'post_tag', 'admin_approve')
+    fields = ('title', 'content','image','display_image', 'post_tag', 'admin_approve')
+    readonly_fields= ('display_image',)
     
-    
+    def display_image(self,obj):
+        if obj.image:
+            return format_html('<img src={} style="height: 50px; width:auto;"/>',obj.image_url)
+        return "Görsel Yok"
+    display_image.short_description = 'Kapak Görseli'
+
     def save_model(self, request, obj, form, change):
         if not obj.pk:                  # Yeni bir nesne oluşturuluyorsa
             obj.author = request.user   # Yazar, o an giriş yapan kullanıcıdır

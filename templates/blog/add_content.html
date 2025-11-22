@@ -1,20 +1,65 @@
-{% extends 'base.html' %}
-
-{% block title %}Yeni içerik ekle{% endblock title%}
+{% extends "base.html" %}
+{% load static %} {% block title %}Yeni İçerik Ekle{% endblock title %}
 
 {% block content %}
 
-    <h2>Yeni İçerik Ekle</h2>
-    <div class="content-form-container">
+    <div class="form-container">
+        
+        <h2 class="text-center mb-4">Yeni İçerik Oluştur</h2>
+
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">Başlık</label>
+                {{ form.title }}
+                {% if form.title.errors %}
+                    <div class="text-danger small">{{ form.title.errors.0 }}</div>
+                {% endif %}
+            </div>
 
-            <fieldset>
-                <legend>İçerik Detayı</legend>
-                {{form.as_p}}
-            </fieldset>
+            <div class="mb-3">
+                <label class="form-label fw-bold">Haber İçeriği</label>
+                {{ form.content }}
+                {% if form.content.errors %}
+                    <div class="text-danger small">{{ form.content.errors.0 }}</div>
+                {% endif %}
+            </div>
 
-            <button type="submit" class="btn-succes">Gönder</button>
+            <div class="mb-3">
+                <div class="mb-4">
+                    <label for="id_image" class="form-label fw-bold">Kapak Görseli</label>
+                    <input type="file" name="image" class="form-control" id="id_image" accept="image/*">
+                    {% if form.image.errors%}
+                        <div class="text-danger small">{{form.images.errors.0}}</div>
+                    {% endif %}
+                </div>
+                <div id="image-preview-container" class="mt-3 d-none text-center p-3 bg-light rounded border">
+                    <p class="small text-muted mb-2">Seçilen Görsel:</p>
+                    <img id="image-preview" src="#" alt="Önizleme" class="img-fluid rounded shadow-sm" style="max-height: 300px;">
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold">Etiketler</label>
+                {{ form.post_tag }}
+                <div class="form-text">
+                    Listeden bir etiket seçiniz. (Birden fazla seçim için Ctrl tuşuna basılı tutun).
+                </div>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Kaydet ve Onaya Gönder
+                </button>
+                <a href="{% url 'content_list' %}" class="btn btn-outline-secondary">
+                    İptal Et
+                </a>
+            </div>
+
         </form>
     </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
 {% endblock content %}

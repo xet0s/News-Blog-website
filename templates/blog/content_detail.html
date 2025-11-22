@@ -4,19 +4,35 @@
 
 {%block content%}
 
-    <article>
-    
-        <h1>{{content.title}}</h1>
-    
-            <p class="user">Yazan : {{content.author.username}}</p>
-            <p class="date">Yayın tarihi : {{content.created_at}}</p>
-
-        <hr>
-
-        <div class="main_content">
-            {{content.content}}
+<div class="detail-container">
+    <div class="detail-header mb-4">
+        <h1 class="article-title">{{content.title}}</h1>
+        <div class="d-flex justify-content-between text-muted mt-2">
+            <span> <i class="bi bi-person">Yazar: <strong>{{content.author.username}}</strong></i></span>
+            <span> {{content.created_at|date:'d F Y,H:i'}}</span>
         </div>
-        <a href="{% url  'content_list'%}">Geri Dön</a>
-    </article>
+    </div>
+</div>
+
+{% if content.image %}
+<div class="detail-image-mb4">
+    <img src="{{content.image.url}}" class="img-fluid rounded shadow-sm w-100" alt="{{content.title}}">
+</div>
+{% endif %}
+
+<div class="article-content">
+    {{content.content|linebreaks}}
+</div>
+
+<hr class="my-4">
+<div class="detail-footer d-flex justify-content-between align-item-center">
+    <div>
+        {% if content.post_tag %}
+        <span class="text-muted me-2">Etiket:</span>
+        <a href="{%url 'content_by_tag' content.post_tag.slug%}" class="btn btn-sm btn-outline-primary">{{content.post_tag.name}}</a>
+        {% endif %}
+    </div>
+    <a href="{% url 'content_list' %}" class="btn btn-secondary">&laquo; Listeye Dön</a>
+</div>
 
 {%endblock content%}

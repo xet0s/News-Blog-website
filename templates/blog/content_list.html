@@ -2,70 +2,104 @@
 
 {% block content %}
 
+    <div class="mb-4">
         {% if current_tag %}
-            <h2 class="mb-4"> {{current_tag.name}} Etiketine Ait İçerikler</h2>
+            <h2><span class="text-primary">#{{ current_tag.name }}</span> Etiketine Ait İçerikler</h2>
+            <a href="{% url 'content_list' %}" class="btn btn-sm btn-outline-secondary mt-2">&laquo; Tüm Haberlere Dön</a>
         {% else %}
-            <h2 class="mb-4">Anasayfa</h2>
+            <h2>Anasayfa</h2>
         {% endif %}
-        <div class="row">
-            {% for content in contents%}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">{{content.title}}</h5>
-                        <p class="card-text text-muted">{{content.content|truncatewords:60}}</p>
-                    </div>
-                    <div class="card-footer bg-white border-top">
-                        {% if content.post_tag%}
-                        <a href="{% url 'content_by_tag' content.post_tag.slug %}" class="btn btn-outline-info btn-sm me-2">{{content.post_tag.name}}</a>
-                        {% endif %}
-                        <a href="{% url 'content_detail' content.id %}" class="btn btn-primary btn-sm">Devamı...</a>
-                        <small class="d-block mt-2 text-secondary">
-                            Yazar: {{ content.author.username }} | {{ content.created_at|date:"d M Y" }}
-                        </small>
-                    </div>
-                </div>
-            </div>
-            {% empty %}
-                <div class="col-12">
-                    <p class="alert alert-warning">Henüz onaylanmamış içerik bulunmamaktadır</p>
-                </div>
-            {% endfor %}
-        </div>
-            {% with is_filtered=current_tag %}
-                {% if is_filtered %}    
-                    {% url 'content_by_tag' is_filtered.slug as base_url %}
+    </div>
+
+    <div class="row">
+        
+        {% for content in contents %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            
+            <div class="card h-100 shadow-sm border-0">
+                
+                {% if content.image %}
+                    <img src="{{ content.image.url }}" class="card-img-top" alt="{{ content.title }}" style="height: 200px; object-fit: cover;">
                 {% else %}
-                    {% url 'content_list' as base_url %}
+                    <div class="bg-light d-flex align-items-center justify-content-center text-muted" style="height: 200px;">
+                        <i class="bi bi-image fs-1"></i>
+                        <span class="ms-2">Görsel Yok</span>
+                    </div>
                 {% endif %}
-                {% if contents.has_other_pages %}
-                <div class="row justify-content-center mt-5">
-                    <div class="col-auto">
-                        <nav aria-label="Sayfa Navigasyonu">
-                            <ul class="pagination">
-                                <li class="page-item {% if not contents.has_previous %}disabled{% endif %}">
-                                    <a class="page-link" 
-                                        href="{{base_url}}{% if contents.has_previous %}?page={{ contents.previous_page_number }}{% endif %}"
-                                        aria-label="Previous">
-                                        &laquo;
-                                    </a>
-                                </li>
-                                {% for i in contents.paginator.page_range %}
-                                    <li class="page-item {% if contents.number == i %}active{% endif %}">
-                                        <a class="page-link" href="{{base_url}}?page={{i}}">{{i}}</a>
-                                    </li>
-                                {% endfor %}
-                                <li class="page-item {% if not contents.has_next %}disabled{% endif %}">
-                                    <a class="page-link" 
-                                    href="{{base_url}}{% if contents.has_next %}?page={{ contents.next_page_number }}{% endif %}" 
-                                    aria-label="Next">
-                                    &raquo;
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">{{ content.title }}</h5>
+                    
+                    <p class="card-text text-secondary">{{ content.content|truncatewords:10 }}</p>
+                </div>
+                
+                <div class="card-footer bg-white border-0 pt-0">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        
+                        {% if content.post_tag %}
+                            <a href="{% url 'content_by_tag' content.post_tag.slug %}" class="badge bg-light text-dark text-decoration-none border">
+                                {{ content.post_tag.name }}
+                            </a>
+                        {% endif %}
+                        
+                        <a href="{% url 'content_detail' content.id %}" class="btn btn-primary btn-sm">
+                            Devamı...
+                        </a>
+                    </div>
+                    
+                    <div class="text-muted small border-top pt-2">
+                        <span class="me-2">Yazar: <strong>{{ content.author.username }}</strong></span>
+                        <span>| {{ content.created_at|date:"d M Y" }}</span>
+                    </div>
                 </div>
             </div>
-            {% endif %}
-        {% endwith %}
-{% endblock content %}  
+            
+        </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center p-5">
+                    <h4>Henüz içerik bulunmamaktadır.</h4>
+                    <p>Lütfen daha sonra tekrar kontrol ediniz veya içerik ekleyiniz.</p>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div> 
+    {% with is_filtered=current_tag %}
+        {% if is_filtered %}
+            {% url 'content_by_tag' is_filtered.slug as base_url %}
+        {% else %}
+            {% url 'content_list' as base_url %}
+        {% endif %}
+
+        {% if contents.has_other_pages %}
+            <nav aria-label="Sayfa Navigasyonu" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    
+                    <li class="page-item {% if not contents.has_previous %}disabled{% endif %}">
+                        <a class="page-link" 
+                            href="{{base_url}}{% if contents.has_previous %}?page={{ contents.previous_page_number }}{% endif %}"
+                            aria-label="Previous">
+                            &laquo; Önceki
+                        </a>
+                    </li>
+
+                    {% for i in contents.paginator.page_range %}
+                        <li class="page-item {% if contents.number == i %}active{% endif %}">
+                            <a class="page-link" href="{{base_url}}?page={{i}}">{{i}}</a>
+                        </li>
+                    {% endfor %}
+
+                    <li class="page-item {% if not contents.has_next %}disabled{% endif %}">
+                        <a class="page-link" 
+                        href="{{base_url}}{% if contents.has_next %}?page={{ contents.next_page_number }}{% endif %}" 
+                        aria-label="Next">
+                            Sonraki &raquo;
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        {% endif %}
+    {% endwith %}
+
+{% endblock content %}

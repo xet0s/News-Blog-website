@@ -61,7 +61,7 @@ def add_content(request):
         raise PermissionDenied("İçerik eklemek için yetkiniz bulunmamaktadır. Editor olamazsınız.")
     
     if request.method== "POST":
-        form=ContentForm(request.POST,request.FILES)
+        form=ContentForm(request.POST, request.FILES)
 
         if form.is_valid():
             content_instance=form.save(commit=False)#ilk onay durumunu atar
@@ -72,6 +72,7 @@ def add_content(request):
             form.save_m2m()#tag ilişkisi
 
             messages.success(request,"İçerik kaydedildi. Onay bekleniyor")
+            return redirect('content_list')
     else:
         form=ContentForm()
     return render(request, "blog/add_content.html",{"form":form}) #template gönderir

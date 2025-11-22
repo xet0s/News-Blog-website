@@ -1,21 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="registration-form-container">
-        <h2>Kayıt Ol</h2>
+    <div class="form-container">
+        <h2>Aramıza katılmak ister misin?</h2>
         <form method="POST">
-            {% csrf_token %} <fieldset>
-                <legend>Hesap Oluştur</legend>
-                
-                {{ form.as_p }} 
-                
-            </fieldset>
-            
-            <button type="submit">Kayıt Ol</button>
+            {%csrf_token%}
+            {{form.as_p}}
+            <button type="submit" class="btn btn-primary w-100 mt-3">Kayıt Ol</button>  
         </form>
-
-        <small>
-            Zaten hesabınız var mı? <a href="{% url 'login' %}">Giriş Yapın</a>
-        </small>
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                Zaten hesabın var mı? <a href="{% url 'login' %}">Giriş Yap</a>
+            </small>
+        </div>
     </div>
 {% endblock content %}  

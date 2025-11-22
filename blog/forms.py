@@ -15,3 +15,21 @@ class ContentForm(ModelForm):
         model=Content
 
         fields=["title","content","post_tag"] # Yazar, onay, ve oluşturma tarihi otomatik olduğu için formda görünmez
+        widget = {                            #Html de kullanacağımız kutuların hazır hali
+            'title': forms.TextInput(attrs={
+                'class':'form-control',
+                'placeholder':'Haber Başlığını buraya giriniz'
+            }),
+            'content':forms.Textarea(attrs={
+                'class':'form-control',
+                'rows':15,
+                'placeholder':'Haber detaylarını buraya giriniz'
+            }),
+            'post_tag':forms.Select(attrs={
+                'class':'form-select'
+            }),
+            'image':forms.FileInput(attrs={
+                'class':'form-control',
+                'id':'id_image'
+            }),
+        }

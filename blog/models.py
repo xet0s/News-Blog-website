@@ -32,6 +32,7 @@ class Content(models.Model):
     
     title=models.CharField(max_length=255)                      #İçerik Başlığı
     content=models.TextField()                                  #İçerik
+    image=models.ImageField(upload_to='blog_images/',blank=True,null=True)#Görsel Ekleme
     created_at=models.DateTimeField(auto_now_add=True)          #İlk oluşma tarihi
 
     author=models.ForeignKey(User,on_delete=models.CASCADE)     #content-user bağlantısı
