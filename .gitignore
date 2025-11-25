@@ -1,7 +1,7 @@
 # Python / Django Tarafı
 ###########################
 # Sanal ortam (Virtual Environment)
-venv/
+/venv/
 env/
 
 # Python Bytecode (Derlenmiş geçici dosyalar)
@@ -11,7 +11,7 @@ __pycache__/
 # Projeye ait yerel/hassas veriler (MySQL kullansanız bile)
 ###########################
 # Yüklenen kullanıcı resimleri ve dosyaları
-/media
+media/
 
 # Django'nun topladığı statik dosyalar (collectstatic sonucu)
 /static_collected
