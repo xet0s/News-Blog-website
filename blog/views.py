@@ -70,13 +70,7 @@ def add_content(request):
             content_instance.author= request.user   #Yazar
             content_instance.admin_approve= False   #Onay durumu
             content_instance.save()                 #kayıt
-            print("========================================")
-            if content_instance.image:
-                print(f"DOSYA İSMİ: {content_instance.image.name}")
-                print(f"DOSYA NEREDE (TAM YOL): {content_instance.image.path}")
-            else:
-                print("HATA: Modelde resim yok görünüyor!")
-            print("========================================")
+            
 
             form.save_m2m()                         #tag ilişkisi
 

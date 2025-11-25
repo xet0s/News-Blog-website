@@ -41,6 +41,7 @@
                     {% else %}
                         <a href="{% url 'login' %}" class="nav-button">Giriş Yap</a> 
                     {% endif %}
+                    <button id="theme-toggle" class="nav-button" title="Temayı Değiştir">🌙</button>
                 </nav>
             </header>
             <main class="main-content">
@@ -63,8 +64,7 @@
                 <p>footer</p>
             </footer>
         
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
-        integrity="..." 
-        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/script.js'%}"></script>
     </div> </body>
     </html>
