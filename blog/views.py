@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from django.core.paginator import Paginator
-
+from .forms import ProfileUpdateForm
 # Create your views here.
 ITEM_PER_PAGE=6 #Her sayfada gösterilecek post miktarı
 
@@ -79,3 +79,23 @@ def add_content(request):
     else:
         form=ContentForm()
     return render(request, "blog/add_content.html",{"form":form}) #template gönderir
+
+@login_required
+def profile(request):
+    return render(request,"blog/profile.html")
+
+@login_required
+def update_profile(request):
+    if request.method=="POST":
+        form=ProfileUpdateForm(request.POST, instance=request.user.profile)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Profil başarıyla güncellendi")
+            return redirect("profile")
+    else:
+        form=ProfileUpdateForm(instance=request.user.profile)
+
+    return render(request,"blog/update_profile.html",{
+        "form":form,
+        })

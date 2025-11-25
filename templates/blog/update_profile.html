@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Profili Düzenle{% endblock title %}
+
+{% block content %}
+
+    <div class="form-container">
+        
+        <h2 class="text-center mb-4" style="color: var(--primary);">Profilini Düzenle</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">Hakkımda</label>
+                
+                {{ form.bio }} 
+                
+                {% if form.bio.errors %}
+                    <div class="text-danger small">{{ form.bio.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Değişiklikleri Kaydet
+                </button>
+                
+                <a href="{% url 'profile' %}" class="btn btn-outline-secondary">
+                    İptal Et
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+{% endblock content %}

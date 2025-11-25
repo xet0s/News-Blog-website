@@ -33,7 +33,7 @@
                                 {% endif %} 
                             {% endfor %}
                         {% endif %}
-                    <a href="#" class="nav-button">{{user.username}}</a>
+                    <a href="{% url 'profile' %}" class="nav-button">{{user.username}}</a>
                         <form action="{% url 'logout' %}" method="post" style="display: inline;">
                             {%csrf_token%}
                             <button type="submit" class="nav-button">Çıkış yap</button>
@@ -54,7 +54,7 @@
                 <h3>Etiketler</h3>
                 <div class="list-group mt-3">
                     {% for tag in ALL_TAGS %}
-                    <a href="{% url 'content_by_tag' tag.slug%}" class="list-group-item list-group-item-action">{{tag.name}}</a>
+                    <a href="{% url 'content_by_tag' tag.slug%}" class="aside-btn list-group-item list-group-item-action">{{tag.name}}</a>
                 {% empty %}
                     <p>Etiket bulunmamaktadır</p>
                 {% endfor %}

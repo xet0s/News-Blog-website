@@ -11,6 +11,9 @@ urlpatterns = [
 
     path('tag/<slug:tag_slug>', views.content_by_tag,name="content_by_tag"),    #filtre
 
-    path("icerik_ekle/",blog_views.add_content,name="add_content"),
+    path("add_content/",blog_views.add_content,name="add_content"),     #içerik ekleme ekranı
+    
+    path("profile/",blog_views.profile,name="profile"),             #profil ekranı
+    path("profile/edit/",blog_views.update_profile,name="update_profile")#profil düzenleme
 
 ]

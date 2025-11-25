@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms  import UserCreationForm
 from django                     import forms
 from django.forms import ModelForm
-from .models import Content
+from .models import Content,Profile
 
 class UserRegisterForm(UserCreationForm): #Django nun kendi kayıt class'ı
 
@@ -31,5 +31,17 @@ class ContentForm(ModelForm):
             'image':forms.FileInput(attrs={
                 'class':'form-control',
                 'id':'id_image'
+            }),
+        }
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields=['bio']
+
+        widgets={
+            'bio':forms.Textarea(attrs={
+                'class':'form-control',
+                'rows':4,
+                'placeholder':'Kendinizle ilgili paylaşmak istediklerinizi belirtiniz'
             }),
         }

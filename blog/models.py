@@ -46,4 +46,9 @@ class Content(models.Model):
     class Meta:
 
         ordering=["-created_at"]                                #nasıl sıralanacağını belirleyen kısım
-     
+
+class Profile(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    bio=models.TextField(max_length=500,blank=True,null=True)
+    def __str__(self):
+        return f"{self.user.username} Profili"

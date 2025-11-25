@@ -1,0 +1,27 @@
+{% extends "base.html"%}
+{%block title%}Profilim{%endblock title%}
+
+{%block content%}
+
+<div class="form-container text-center">
+    <h2 class="mb-4" style="color: var(--primary);">Profil Bilgileri</h2>
+
+    <h3 class="fw-bold">{{user.username}}</h3>
+    <p class="text-muted mb-4 " style="color: var(--text-muted);">{{user.email}}</p>
+
+    <hr class="my-4" style="border-color: var(--border-color);">
+
+    <div class="text-start p-3 rounded" style="background-color: var(--bg-body);">
+        <h5 class="fw-bold" style="color: var(--primary)">Hakkımda</h5>
+        {% if user.profile.bio %}
+            <p class="mb-0" style="color: var(--text-main);">{{user.profile.bio}}</p>
+        {% else %}
+            <p class="text-muted mb-0 fst-italic" style="color: var(--text-muted);">Biyografi verisi bulunmamaktadır.</p>
+        {% endif %}
+
+        <div class="mt-4">
+            <a href="{% url 'update_profile' %}" class="btn btn-primary px-5">Profili Düzenle</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

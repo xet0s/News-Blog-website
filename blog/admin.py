@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag, Content
+from .models import Tag, Content,Profile
 from django.utils.html import format_html
 # Register your models here.
 
@@ -29,3 +29,6 @@ class admin_Content(admin.ModelAdmin):
         if not obj.pk:                  # Yeni bir nesne oluşturuluyorsa
             obj.author = request.user   # Yazar, o an giriş yapan kullanıcıdır
         super().save_model(request, obj, form, change)
+
+class admin_Profile(admin.ModelAdmin):
+    admin.site.register(Profile)
