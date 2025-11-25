@@ -31,7 +31,7 @@
                     <label for="id_image" class="form-label fw-bold">Kapak Görseli</label>
                     <input type="file" name="image" class="form-control" id="id_image" accept="image/*">
                     {% if form.image.errors%}
-                        <div class="text-danger small">{{form.images.errors.0}}</div>
+                        <div class="text-danger small">{{form.image.errors.0}}</div>
                     {% endif %}
                 </div>
                 <div id="image-preview-container" class="mt-3 d-none text-center p-3 bg-light rounded border">
@@ -44,7 +44,7 @@
                 <label class="form-label fw-bold">Etiketler</label>
                 {{ form.post_tag }}
                 <div class="form-text">
-                    Listeden bir etiket seçiniz. (Birden fazla seçim için Ctrl tuşuna basılı tutun).
+                    Listeden bir etiket seçiniz.
                 </div>
             </div>
 

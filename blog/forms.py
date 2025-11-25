@@ -14,7 +14,7 @@ class ContentForm(ModelForm):
     class Meta:
         model=Content
 
-        fields=["title","content","post_tag"] # Yazar, onay, ve oluşturma tarihi otomatik olduğu için formda görünmez
+        fields=["title","content","post_tag","image"] # Yazar, onay, ve oluşturma tarihi otomatik olduğu için formda görünmez
         widget = {                            #Html de kullanacağımız kutuların hazır hali
             'title': forms.TextInput(attrs={
                 'class':'form-control',

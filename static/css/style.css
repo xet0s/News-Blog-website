@@ -1,5 +1,5 @@
 /* =========================================
-   1. DEĞİŞKENLER VE RENK PALETİ (MAVİ TEMA)
+    1. DEĞİŞKENLER VE RENK PALETİ (MAVİ TEMA)
    ========================================= */
 :root {
     --bg-body: #F0F4F8;       /* Buz Mavisi Zemin */
@@ -15,7 +15,7 @@
 }
 
 /* =========================================
-   2. TEMEL SIFIRLAMALAR
+    2. TEMEL SIFIRLAMALAR
    ========================================= */
 * {
     box-sizing: border-box; /* Kutuların taşmasını engeller */
@@ -41,7 +41,7 @@ a:hover {
 }
 
 /* =========================================
-   3. GRID YERLEŞİMİ (LAYOUT) - KRİTİK KISIM
+    3. GRID YERLEŞİMİ (LAYOUT) - KRİTİK KISIM
    ========================================= */
 .site-container {
     display: grid; /* Grid'i Açıyoruz */
@@ -67,7 +67,7 @@ a:hover {
 }
 
 /* =========================================
-   4. KUTU STİLLERİ VE ATAMALAR
+    4. KUTU STİLLERİ VE ATAMALAR
    ========================================= */
 
 /* HEADER */
@@ -159,7 +159,7 @@ footer {
 }
 
 /* =========================================
-   5. BOOTSTRAP ÇAKIŞMA DÜZELTMELERİ
+    5. BOOTSTRAP ÇAKIŞMA DÜZELTMELERİ
    ========================================= */
 .row {
     margin-left: 0 !important;
@@ -174,7 +174,7 @@ footer {
 }
 
 /* =========================================
-   DETAY SAYFASI (MAKALE) STİLLERİ
+    DETAY SAYFASI (MAKALE) STİLLERİ
    ========================================= */
 
 /* Detay Kartı Kapsayıcısı */

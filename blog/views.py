@@ -61,6 +61,8 @@ def add_content(request):
         raise PermissionDenied("İçerik eklemek için yetkiniz bulunmamaktadır. Editor olamazsınız.")
     
     if request.method== "POST":
+        print("GELEN DOSYALAR:", request.FILES)
+
         form=ContentForm(request.POST, request.FILES)
 
         if form.is_valid():
@@ -68,8 +70,15 @@ def add_content(request):
             content_instance.author= request.user   #Yazar
             content_instance.admin_approve= False   #Onay durumu
             content_instance.save()                 #kayıt
-        
-            form.save_m2m()#tag ilişkisi
+            print("========================================")
+            if content_instance.image:
+                print(f"DOSYA İSMİ: {content_instance.image.name}")
+                print(f"DOSYA NEREDE (TAM YOL): {content_instance.image.path}")
+            else:
+                print("HATA: Modelde resim yok görünüyor!")
+            print("========================================")
+
+            form.save_m2m()                         #tag ilişkisi
 
             messages.success(request,"İçerik kaydedildi. Onay bekleniyor")
             return redirect('content_list')
