@@ -39,7 +39,8 @@
                             <button type="submit" class="nav-button">Çıkış yap</button>
                         </form>
                     {% else %}
-                        <a href="{% url 'login' %}" class="nav-button">Giriş Yap</a> 
+                        <a href="{% url 'login' %}" class="nav-button">Giriş Yap</a>
+                        <a href="{% url 'register' %}" class="nav-button">Kayıt Ol</a>
                     {% endif %}
                     <button id="theme-toggle" class="nav-button" title="Temayı Değiştir">🌙</button>
                 </nav>

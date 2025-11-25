@@ -1,17 +1,31 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
+{% block title %}Kayıt Ol{% endblock %}
 
 {% block content %}
-    <div class="form-container">
-        <h2>Aramıza katılmak ister misin?</h2>
-        <form method="POST">
-            {%csrf_token%}
-            {{form.as_p}}
-            <button type="submit" class="btn btn-primary w-100 mt-3">Kayıt Ol</button>  
-        </form>
-        <div class="text-center mt-3">
-            <small class="text-muted">
-                Zaten hesabın var mı? <a href="{% url 'login' %}">Giriş Yap</a>
-            </small>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="form-container">
+            <h2 class="text-center mb-4" style="color: var(--primary);">Aramıza Katılın</h2>
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+                
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        Kayıt Ol
+                    </button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-3">
+                <small class="text-muted">
+                    Zaten hesabınız var mı? <a href="{% url 'login' %}">Giriş Yapın</a>
+                </small>
+            </div>
         </div>
     </div>
-{% endblock content %}  
+</div>
+{% endblock %}

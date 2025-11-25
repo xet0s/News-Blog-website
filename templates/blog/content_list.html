@@ -16,38 +16,37 @@
         {% for content in contents %}
         <div class="col-lg-4 col-md-6 mb-4">
             
-            <div class="card h-100 shadow-sm border-0">
+            <div class="card h-100 ">
                 
                 {% if content.image %}
-                    <img src="{{ content.image.url }}" class="card-img-top" alt="{{ content.title }}" style="height: 200px; object-fit: cover;">
+                    <img src="{{ content.image.url }}" class="card-img-top" alt="{{ content.title }}" >
                 {% else %}
-                    <div class="bg-light d-flex align-items-center justify-content-center text-muted" style="height: 200px;">
-                        <i class="bi bi-image fs-1"></i>
-                        <span class="ms-2">Görsel Yok</span>
+                    <div class="no-image-box">
+                        <span>Görsel Yok</span>
                     </div>
                 {% endif %}
                 
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">{{ content.title }}</h5>
+                    <h5 class="card-title">{{ content.title }}</h5>
                     
-                    <p class="card-text text-secondary">{{ content.content|truncatewords:10 }}</p>
+                    <p class="card-text text-muted">{{ content.content|truncatewords:10 }}</p>
                 </div>
                 
-                <div class="card-footer bg-white border-0 pt-0">
+                <div class="card-footer">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         
                         {% if content.post_tag %}
-                            <a href="{% url 'content_by_tag' content.post_tag.slug %}" class="badge bg-light text-dark text-decoration-none border">
+                            <a href="{% url 'content_by_tag' content.post_tag.slug %}" class="card-btn-tag btn btn-primary btn-sm">
                                 {{ content.post_tag.name }}
                             </a>
                         {% endif %}
                         
-                        <a href="{% url 'content_detail' content.id %}" class="btn btn-primary btn-sm">
+                        <a href="{% url 'content_detail' content.id %}" class="card-btn-continue btn btn-primary btn-sm">
                             Devamı...
                         </a>
                     </div>
                     
-                    <div class="text-muted small border-top pt-2">
+                    <div class="card-footer-text text-muted small border-top pt-2">
                         <span class="me-2">Yazar: <strong>{{ content.author.username }}</strong></span>
                         <span>| {{ content.created_at|date:"d M Y" }}</span>
                     </div>

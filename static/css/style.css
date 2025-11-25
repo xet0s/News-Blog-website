@@ -1,56 +1,53 @@
-/* =========================================
-   1. AKILLI RENK PALETİ (YEŞİL & MAVİ)
-   ========================================= */
+/* ==========================================================================
+   1. DEĞİŞKENLER VE RENK PALETİ (THEME ENGINE)
+   ========================================================================== */
 
-/* Varsayılan (Aydınlık - Light Mode) */
+/* ☀️ AYDINLIK MOD (GÜNDÜZ - DOĞA YEŞİLİ) */
 :root {
-    /* Zemin: Çok Açık Nane Yeşili */
-    --bg-body: #E8F5E9;       
-    /* Kutu İçleri: Saf Beyaz */
-    --bg-surface: #FFFFFF;    
+    /* Zeminler */
+    --bg-body: #F1F8E9;       /* Çok uçuk nane yeşili */
+    --bg-surface: #FFFFFF;    /* Saf Beyaz (Kutu içleri) */
     
-    /* Vurgu Renkleri (Mavi) */
-    --primary: #0D6EFD;       /* Bootstrap Mavisi */
-    --primary-hover: #0B5ED7; /* Koyu Mavi */
-    --accent-light: #E3F2FD;  /* Çok Açık Mavi (Hover için) */
+    /* Ana Renkler */
+    --primary: #2E7D32;       /* Orman Yeşili (Ana butonlar, linkler) */
+    --primary-hover: #1B5E20; /* Koyu Yeşil (Üzerine gelince) */
+    --accent-light: #E8F5E9;  /* Buton hover arkası için açık ton */
     
-    /* Yazı Renkleri */
-    --text-main: #2E3830;     /* Koyu Yeşilimsi Gri */
-    --text-muted: #6C757D;    /* Gri */
+    /* Yazılar */
+    --text-main: #1B1F1C;     /* Siyaha yakın yeşilimsi gri */
+    --text-muted: #556B2F;    /* Zeytin yeşili (Yan bilgiler) */
     
-    /* Kenarlıklar */
-    --border-color: #C8E6C9;  /* Açık Yeşil Çerçeve */
-    --shadow-soft: 0 4px 12px rgba(46, 125, 50, 0.1); /* Yeşilimsi hafif gölge */
-    
-    --header-height: 80px;
+    /* Yapısal */
+    --border-color: #C8E6C9;  /* Açık yeşil çerçeve */
+    --shadow-soft: 0 4px 12px rgba(46, 125, 50, 0.15); /* Yeşilimsi gölge */
 }
 
-/* Karanlık Mod (Dark Mode) - HTML'de data-theme="dark" varsa çalışır */
+/* 🌙 KARANLIK MOD (GECE - TEKNO MAVİ) */
+/* HTML etiketinde data-theme="dark" varsa devreye girer */
 [data-theme="dark"] {
-    /* Zemin: Koyu Orman Yeşili */
-    --bg-body: #0B1E15;       
-    /* Kutu İçleri: Koyu Yosun Yeşili */
-    --bg-surface: #142920;    
+    /* Zeminler */
+    --bg-body: #0F172A;       /* Derin gece mavisi */
+    --bg-surface: #1E293B;    /* Koyu lacivert gri (Kutu içleri) */
     
-    /* Vurgu Renkleri */
-    --primary: #4C9AFF;       /* Koyu zeminde parlayan açık mavi */
-    --primary-hover: #0D6EFD; 
-    --accent-light: #1C3A30;  /* Buton hover için koyu yeşil */
+    /* Ana Renkler */
+    --primary: #3B82F6;       /* Parlak elektrik mavisi */
+    --primary-hover: #2563EB; /* Canlı mavi */
+    --accent-light: #1E3A8A;  /* Koyu mavi vurgu */
     
-    /* Yazı Renkleri */
-    --text-main: #E8F5E9;     /* Kırık Beyaz */
-    --text-muted: #A5D6A7;    /* Açık Yeşilimsi Gri */
+    /* Yazılar */
+    --text-main: #F1F5F9;     /* Kırık beyaz */
+    --text-muted: #94A3B8;    /* Soğuk gri */
     
-    /* Kenarlıklar */
-    --border-color: #2E5E40;  /* Orta Yeşil Çerçeve */
+    /* Yapısal */
+    --border-color: #334155;  /* Koyu gri-mavi çerçeve */
     --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.6); /* Koyu gölge */
 }
 
-/* =========================================
-   2. GENEL AYARLAR VE SIFIRLAMALAR
-   ========================================= */
+/* ==========================================================================
+   2. GENEL SIFIRLAMALAR VE AYARLAR
+   ========================================================================== */
 * {
-    box-sizing: border-box; 
+    box-sizing: border-box; /* Taşmaları engellemek için zorunlu */
 }
 
 body {
@@ -60,28 +57,27 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    /* Renk geçişleri yumuşak olsun */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
     color: var(--primary);
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.2s ease;
 }
 
 a:hover {
     color: var(--primary-hover);
 }
 
-/* =========================================
-   3. LAYOUT (CSS GRID)
-   ========================================= */
+/* ==========================================================================
+   3. LAYOUT (CSS GRID SİSTEMİ)
+   ========================================================================== */
 .site-container {
-    display: grid; 
+    display: grid;
     
     /* Sütunlar: İçerik (Esnek) | Sidebar (300px Sabit) */
-    grid-template-columns: 1fr 300px; 
+    grid-template-columns: 1fr 300px;
     
     /* Yerleşim Haritası */
     grid-template-areas: 
@@ -89,26 +85,38 @@ a:hover {
         "content    sidebar"
         "footer     footer";
     
-    gap: 25px;
+    gap: 25px; /* Kutular arası boşluk */
     
-    /* Ortala ve Genişlik Ver */
+    /* Siteyi Ortala ve Sınırla */
     width: 90%;
     max-width: 1400px;
-    margin: 20px auto;
+    margin: 30px auto;
     
-    /* Sidebar'ın düşmesini engelleyen güvenlik kilidi */
-    overflow-x: hidden; 
+    /* Sidebar düşmesini engelleyen güvenlik kilidi */
+    overflow-x: hidden;
 }
 
-/* =========================================
-   4. KUTU STİLLERİ (HEADER, MAIN, ASIDE)
-   ========================================= */
+/* MOBİL UYUMLULUK (Ekran küçülünce tek sütun olsun) */
+@media (max-width: 768px) {
+    .site-container {
+        grid-template-columns: 1fr; /* Tek sütun */
+        grid-template-areas: 
+            "header"
+            "content"
+            "sidebar"
+            "footer";
+    }
+}
 
-/* Ortak Kutu Özellikleri */
-header, main, aside, .form-container {
+/* ==========================================================================
+   4. ANA BLOK STİLLERİ (Header, Main, Aside, Footer)
+   ========================================================================== */
+
+/* Ortak Kutu Stili (Kart Görünümü) */
+header, main, aside, footer, .form-container {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 12px; /* Modern yuvarlak köşeler */
     box-shadow: var(--shadow-soft);
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
@@ -122,29 +130,30 @@ header {
     padding: 15px 30px;
 }
 
-/* LOGO */
 .logo {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 800; /* Kalın font */
     color: var(--primary);
+    letter-spacing: -0.5px;
 }
 
-/* NAVIGATOR (Menü) */
 .navigator {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
 }
 
+/* Menü Linkleri ve Butonları */
 .nav-button {
     background-color: transparent;
     color: var(--text-main);
     border: 1px solid transparent;
     padding: 8px 16px;
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
 }
 
 .nav-button:hover {
@@ -155,81 +164,184 @@ header {
 /* MAIN CONTENT */
 main {
     grid-area: content;
-    padding: 25px; 
-    /* Bootstrap taşmasını engellemek için */
-    overflow-x: hidden; 
+    padding: 25px;
 }
 
 /* SIDEBAR */
 aside {
     grid-area: sidebar;
-    padding: 20px;
+    padding: 25px;
     min-height: 400px;
 }
 
 aside h3 {
     color: var(--primary);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    font-weight: 700;
     border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
-    margin-bottom: 15px;
-}
-
-/* Sidebar Linkleri */
-.list-group-item {
-    background-color: var(--bg-surface);
-    border-color: var(--border-color);
-    color: var(--text-main);
-}
-
-.list-group-item:hover {
-    background-color: var(--accent-light);
-    color: var(--primary);
-    border-left: 4px solid var(--primary);
+    margin-bottom: 20px;
 }
 
 /* FOOTER */
 footer {
     grid-area: footer;
-    background-color: var(--bg-surface); /* Footer da kutu gibi olsun */
-    border: 1px solid var(--border-color);
-    color: var(--text-muted);
+    background-color: var(--primary); /* Footer tema renginde olsun */
+    color: white;
     padding: 20px;
     text-align: center;
-    border-radius: 8px;
-    margin-top: 20px;
+    border: none; /* Footer'da çerçeve olmasın */
 }
 
-/* =========================================
-   5. FORM VE KART ÖZELLEŞTİRMELERİ
-   ========================================= */
-
-/* Form Inputları (Dark Mode Uyumlu) */
-input, textarea, select {
-    background-color: var(--bg-body) !important;
-    color: var(--text-main) !important;
-    border: 1px solid var(--border-color) !important;
-}
-
-input:focus, textarea:focus, select:focus {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25) !important;
-}
-
-/* Kartlar (Haber Listesi) */
-.card {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-}
-
-.card-footer {
-    background-color: rgba(0,0,0,0.03) !important; /* Hafif koyuluk */
-    border-top: 1px solid var(--border-color) !important;
-}
-
-/* Bootstrap Grid Düzeltmesi */
+/* ==========================================================================
+   5. BOOTSTRAP ÇAKIŞMA DÜZELTMELERİ (ZORUNLU)
+   ========================================================================== */
 .row {
     margin-left: 0 !important;
     margin-right: 0 !important;
+}
+
+/* ==========================================================================
+   6. HABER KARTLARI VE BUTON ÖZELLEŞTİRMELERİ
+   ========================================================================== */
+
+.card {
+    border: 1px solid var(--border-color);
+    border-radius: 12px; /* Köşeleri yuvarlat */
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--bg-surface);
+    overflow: hidden; /* Resim taşarsa kes */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Hafif kalkış */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* 2. Resim Alanı (Standart Boyut) */
+.card-img-top {
+    height: 200px;       /* Yüksekliği sabitle */
+    width: 100%;
+    object-fit: cover;   /* Resmi bozmadan sığdır */
+    border-bottom: 1px solid var(--border-color);
+}
+.card .card-title{
+    color: var(--text-main)!important;
+}
+.card .card-text{
+    color: var(--text-muted)!important;
+}
+/* 3. "Görsel Yok" Alanı (Gri Kutu) */
+/* HTML'de bu div'e 'no-image-box' sınıfı vereceğiz */
+.no-image-box {
+    height: 200px;
+    width: 100%;
+    background-color: #E9ECEF; /* Gri Zemin */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6C757D; /* Gri Yazı */
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 4. Kartın Alt Kısmı (Footer) Düzenlemesi */
+.card-footer {
+    background-color:var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    padding: 15px;
+}
+.card-footer .card-footer-text{
+    color: var(--text-muted)!important;
+}
+/* Footer içindeki Etiket ve Buton Hizalaması */
+.card-footer .d-flex {
+    display: flex;
+    justify-content: space-between; /* İki uca yasla */
+    align-items: center; /* Ortala */
+}
+
+/* 5. Butonlar (Zarif Hap Şekli) */
+.card .btn-primary {
+    border-radius: 50px; /* Tam yuvarlak */
+    padding: 5px 20px;
+    font-size: 0.85rem;
+    background-color: var(--primary);
+    border: none;
+}
+
+.card .btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* 6. Etiket (Badge) */
+.card .badge {
+    font-weight: normal;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: transparent;
+    text-decoration: none;
+}
+
+.card .badge:hover {
+    background-color: var(--primary);
+    color: white;
+}
+/* ==========================================================================
+   7. FORM GÖRÜNÜMÜ (GİRİŞ, KAYIT, EKLEME)
+   ========================================================================== */
+
+.form-container {
+    max-width: 600px;
+    margin: 40px auto; /* Ortala */
+    padding: 40px;
+}
+
+.form-container h2 {
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Inputların Temaya Uyumu */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="file"],
+textarea,
+select,
+.form-control,
+.form-select {
+    background-color: var(--bg-body) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+/* Input Focus (Tıklayınca) */
+.form-control:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px var(--accent-light) !important;
+}
+
+/* Form Butonları */
+.btn-primary {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    width: 100%; /* Form butonları geniş olsun */
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover) !important;
 }
