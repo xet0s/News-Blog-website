@@ -5,9 +5,9 @@
 {%block content%}
 
 <div class="detail-container">
-    <div class="detail-header mb-4">
+    <div class="detail-header">
         <h1 class="article-title">{{content.title}}</h1>
-        <div class="d-flex justify-content-between text-muted mt-2">
+        <div class="detail-text">
             <span> <i class="bi bi-person">Yazar: <strong>{{content.author.username}}</strong></i></span>
             <span> {{content.created_at|date:'d F Y,H:i'}}</span>
         </div>
@@ -15,9 +15,7 @@
 </div>
 
 {% if content.image %}
-<div class="detail-image-mb4">
-    <img src="{{content.image.url}}" class="img-fluid rounded shadow-sm w-100" alt="{{content.title}}">
-</div>
+    <img src="{{content.image.url}}" class="detail-image" alt="{{content.title}}">
 {% endif %}
 
 <div class="article-content">
@@ -28,7 +26,6 @@
 <div class="detail-footer d-flex justify-content-between align-item-center">
     <div>
         {% if content.post_tag %}
-        <span class="text-muted me-2">Etiket:</span>
         <a href="{%url 'content_by_tag' content.post_tag.slug%}" class="btn btn-sm btn-outline-primary">{{content.post_tag.name}}</a>
         {% endif %}
     </div>
