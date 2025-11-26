@@ -368,3 +368,24 @@ select,
 .btn-primary:hover {
     background-color: var(--primary-hover) !important;
 }
+/* =========================================
+   FOOTER ÖZELLEŞTİRMESİ
+   ========================================= */
+
+/* Footer içindeki linklerin rengini açıyoruz */
+.footer-link {
+    color: rgba(255, 255, 255, 0.8); /* Hafif kırık beyaz */
+    text-decoration: none;
+    transition: color 0.2s;
+    font-size: 0.95rem;
+}
+
+.footer-link:hover {
+    color: #ffffff; /* Üzerine gelince tam beyaz */
+    text-decoration: underline;
+}
+
+/* Footer'ın genel yazı rengi */
+.footer-bar {
+    color: rgba(255, 255, 255, 0.7);
+}

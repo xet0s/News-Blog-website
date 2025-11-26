@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block title %}Hakkımızda{% endblock title %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row g-4 mb-4">
+        
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm p-4 text-center" style="background-color: var(--bg-surface); border: 1px solid var(--border-color);">
+                <h3 class="mb-3" style="color: var(--primary);">
+                    <i class="bi bi-person-circle"></i> Hakkımda
+                </h3>
+                <div style="color: var(--text-main);">
+                    <p>
+                        Bir üniversite öğrencisi ve yazılım geliştirme konusunda ilgili birisi olarak ders kapsamında hazırlanmış bir proje.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm p-4 text-center" style="background-color: var(--bg-surface); border: 1px solid var(--border-color);">
+                <h3 class="mb-3" style="color: var(--primary);">
+                    <i class="bi bi-bullseye"></i> Misyon
+                </h3>
+                <div style="color: var(--text-main);">
+                    <p>
+                        Oyun ve  Teknoloji haberlerini,incelemelerini ve benzeri yazıları temiz,okunabilir ve sade bir şekilde kullanıcıya ulaştırmak.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-4 mb-4">
+        
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm p-4 text-center" style="background-color: var(--bg-surface); border: 1px solid var(--border-color);">
+                <h3 class="mb-3" style="color: var(--primary);">
+                    <i class="bi bi-cpu-fill"></i> Teknolojiler
+                </h3>
+                <div style="color: var(--text-main);">
+                    <p class="mb-3">Bu proje geliştirilirken kullanılan güncel teknolojiler:</p>
+                    
+                    <div class="d-flex flex-wrap justify-content-center gap-2">
+                        <span class="badge fs-6"  style="color: var(--text-main);">Python 3.13</span>
+                        <span class="badge fs-6"  style="color: var(--text-main);">Django 5</span>
+                        <span class="badge fs-6" style="color: var(--text-main);" >Bootstrap 5</span>
+                        <span class="badge fs-6"  style="color: var(--text-main);">HTML5 & CSS3</span>
+                        <span class="badge fs-6"  style="color: var(--text-main);">MySQL</span>
+                        <span class="badge fs-6"  style="color: var(--text-main);">GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100 shadow-sm p-4 text-center" style="background-color: var(--bg-surface); border: 1px solid var(--border-color);">
+                <h3 class="mb-3" style="color: var(--primary);">
+                    <i class="bi bi-book-half"></i> Kaynaklar
+                </h3>
+                <div style="color: var(--text-main);">
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Django Resmi Dokümantasyonu</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Bootstrap 5 Dokümantasyonu</li>
+                        <li><i class="bi bi-check2-circle text-success me-2"></i>StackOverflow & GitHub Topluluğu</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card h-100 shadow-sm p-5 text-center" style="background-color: var(--bg-surface); border: 1px solid var(--border-color);">
+                <h3 class="mb-4" style="color: var(--primary);">
+                    <i class="bi bi-envelope-paper-heart-fill"></i> İletişim
+                </h3>
+                
+                <div style="color: var(--text-main);">
+                    <p>
+                        Görüşlerinizi bildirmek ve iletişime geçmek için :
+                    </p>
+                    <p><strong>E-mail:</strong>arankerem05@gmail.com</p>
+
+                    <div class="d-flex justify-content-center gap-3 mt-2">
+                        <a href="https://www.linkedin.com/in/kerem-aran-414805348/" target="_blank" class="btn btn-outline-primary px-4">
+                            <i class="bi bi-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/xet0s" target="_blank" class="btn btn-dark px-4">
+                            <i class="bi bi-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}

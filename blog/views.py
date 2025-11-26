@@ -34,8 +34,8 @@ def content_by_tag(request,tag_slug): #tag/etikete göre içerik filtreleme sist
         "current_tag":filter_tag
     }) 
 
-def content_detail(request, content_id): #İçerik detaylarını çeken fonksiyon
-    content= get_object_or_404(Content, id=content_id)
+def content_detail(request, slug): #İçerik detaylarını çeken fonksiyon
+    content= get_object_or_404(Content, slug=slug)
     return render(request, "blog/content_detail.html",{"content":content})
 
 
@@ -126,3 +126,6 @@ def update_profile(request):#Profil düzenlemeyi sağlayan fonksiyon
     return render(request,"blog/update_profile.html",{
         "form":form,
         })
+
+def about(request):
+    return render(request,"blog/about.html")

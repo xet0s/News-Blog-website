@@ -69,5 +69,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    // ===============================================
+    // 3. BİLDİRİM (TOAST) SİSTEMİ
+    // ===============================================
+    
+    // Sayfadaki tüm 'toast' sınıfına sahip elemanları bul
+    var toastElList = [].slice.call(document.querySelectorAll('.toast'));
+    
+    // Hepsini Bootstrap Toast objesine çevir
+    var toastList = toastElList.map(function (toastEl) {
+        // delay: 5000 -> 5 saniye sonra kaybolur
+        return new bootstrap.Toast(toastEl, { delay: 5000 }); 
+    });
+    
+    // Hepsini göster
+    toastList.forEach(function (toast) {
+        toast.show();
+    });
 
 });
