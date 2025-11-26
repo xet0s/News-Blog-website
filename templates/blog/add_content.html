@@ -7,7 +7,7 @@
 
     <div class="form-container">
         
-        <h2 class="text-center mb-4">Yeni İçerik Oluştur</h2>
+        <h2 class="text-center mb-4">{{title|default:"Yeni İçerik Oluştur"}}</h2>
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}

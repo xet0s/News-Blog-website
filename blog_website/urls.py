@@ -27,6 +27,7 @@ urlpatterns = [
     path('kayit/', blog_views.register, name='register'),   #Kayıt yolu
     path("giris/", auth_views.LoginView.as_view(template_name="blog/login.html"),name="login"), #giriş yolu
     path("cikis/", auth_views.LogoutView.as_view(next_page="/"),name="logout"),#çıkış yolu
+    path("içerik_duzenle/<int:content_id>/", blog_views.update_content,name="update_content"), #içerik düzenleme yolu
 ]
 
 if settings.DEBUG:

@@ -35,9 +35,9 @@
     --accent-light: #1E3A8A;  /* Koyu mavi vurgu */
     
     /* Yazılar */
-    --text-main: #F1F5F9;     /* Kırık beyaz */
-    --text-muted: #94A3B8;    /* Soğuk gri */
-    
+    --text-main: #F1F5F9 !important;     /* Kırık beyaz */
+    --text-muted: #94A3B8 !important;    /* Soğuk gri */
+        
     /* Yapısal */
     --border-color: #334155;  /* Koyu gri-mavi çerçeve */
     --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.6); /* Koyu gölge */
@@ -324,7 +324,7 @@ footer {
     object-fit: cover;
     object-position:center;
     border-radius: 12px;
-    margin-bottom: 12rem;
+    margin-bottom: 25px;
     box-shadow: var(--shadow-soft);
     
     

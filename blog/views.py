@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.contrib import messages
 from django.core.paginator import Paginator
-from .forms import ProfileUpdateForm
+from .forms import ProfileUpdateForm,ContentForm
 # Create your views here.
 ITEM_PER_PAGE=6 #Her sayfada gösterilecek post miktarı
 
@@ -25,7 +25,6 @@ def content_by_tag(request,tag_slug): #tag/etikete göre içerik filtreleme sist
 
     filter_tag=get_object_or_404(Tag,slug=tag_slug) #filtreleme yoksa hata kodu verme
     filtered_contents = Content.objects.filter(post_tag=filter_tag,admin_approve=True).order_by('-created_at')#admin onay filtresi
-    filtered_contents= Content.objects.filter(post_tag=filter_tag) #filtrelenmiş içerikler
     paginator=Paginator(filtered_contents,ITEM_PER_PAGE)#sayfalama sistemini ekleme
     page_number=request.GET.get("page")                 #sayfa sayısı
     page_obj=paginator.get_page(page_number)   #filtrelenemiş içeriğin bulunduğu sayfayı kontrol eden sistem
@@ -81,11 +80,39 @@ def add_content(request):
     return render(request, "blog/add_content.html",{"form":form}) #template gönderir
 
 @login_required
-def profile(request):
-    return render(request,"blog/profile.html")
+def update_content(request,content_id):#Varolan içerikleri tekrar düzenlemeyi sağlayan fonksiyon
+    content=get_object_or_404(Content,id=content_id)
+    if content.author !=request.user:
+        raise PermissionDenied("Bu içeriği düzenleme yetkiniz yok")
+    
+    if request.method=="POST":
+        form=ContentForm(request.POST,request.FILES,instance=content)
+        if form.is_valid():
+            if not form.has_changed():
+                return redirect('profile')
+            content_instance=form.save(commit=False)
+            content_instance.admin_approve=False
+
+            content_instance.save()
+            form.save_m2m()
+
+            messages.success(request,"İçerik Güncellendi ve Tekrar Onaya Düştü")
+            return('profile')
+    else:
+        form=ContentForm(instance=content)
+    return render(request,'blog/add_content.html',{
+        "form":form,
+        "title":"İçerik Düzenle"
+    })
+@login_required
+def profile(request):#Profil ekranı ve editörlerin içeriklerini getiren fonksiyon
+    user_contents=  Content.objects.filter(author=request.user).order_by("created_at")
+    return render(request,"blog/profile.html",{
+        "user_contents":user_contents
+    })
 
 @login_required
-def update_profile(request):
+def update_profile(request):#Profil düzenlemeyi sağlayan fonksiyon
     if request.method=="POST":
         form=ProfileUpdateForm(request.POST, instance=request.user.profile)
 

@@ -14,6 +14,8 @@ urlpatterns = [
     path("add_content/",blog_views.add_content,name="add_content"),     #içerik ekleme ekranı
     
     path("profile/",blog_views.profile,name="profile"),             #profil ekranı
-    path("profile/edit/",blog_views.update_profile,name="update_profile")#profil düzenleme
+    path("profile/edit/",blog_views.update_profile,name="update_profile"),#profil düzenleme
+
+    path('icerik-duzenle/<int:content_id>/', blog_views.update_content, name='update_content'),#içerik düzenleme
 
 ]

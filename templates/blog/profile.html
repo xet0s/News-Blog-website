@@ -3,15 +3,15 @@
 
 {%block content%}
 
-<div class="form-container text-center">
+<div class="form-container text-center" style="max-width: 1000px;">
     <h2 class="mb-4" style="color: var(--primary);">Profil Bilgileri</h2>
 
     <h3 class="fw-bold">{{user.username}}</h3>
-    <p class="text-muted mb-4 " style="color: var(--text-muted);">{{user.email}}</p>
+    <p class="text-muted mb-4 " style="color: var(--text-muted)!important;">{{user.email}}</p>
 
     <hr class="my-4" style="border-color: var(--border-color);">
 
-    <div class="text-start p-3 rounded" style="background-color: var(--bg-body);">
+    <div class="text-center p-3 rounded" style="background-color: var(--bg-body);">
         <h5 class="fw-bold" style="color: var(--primary)">Hakkımda</h5>
         {% if user.profile.bio %}
             <p class="mb-0" style="color: var(--text-main);">{{user.profile.bio}}</p>
@@ -20,8 +20,42 @@
         {% endif %}
 
         <div class="mt-4">
-            <a href="{% url 'update_profile' %}" class="btn btn-primary px-5">Profili Düzenle</a>
+            <a href="{% url 'update_profile' %}" class="btn btn-primary px-5" style="max-width: 200px;">Profili Düzenle</a>
         </div>
-    </div>
+        <div class="container mt-5">
+            <h3 class="mb-4 border-bottom pb-2" style="color: var(--text-main);">İçerikler:({{user_contents.count}})</h3>
+
+            <div class="row text-start">
+                {% for content in user_contents %}
+                <div class="col-md-6">
+                    <div class="card h-100 news-card border-0">
+                        <div class="card-body">
+                            <div class="mb-2">
+                                {% if content.admin_approve %}
+                                    <span class="badge bg-success" style="color:white">Yayında</span>
+                                {% else %}
+                                    <span class="badge bg-warning text-dark">Henüz onaylanmadı</span>
+                                {% endif %}
+                            </div>
+                            <h5 class="card-title">{{content.title}}</h5>
+                            <p class="card-text text-muted small">{{content.content|truncatewords:30}}</p>
+                        </div>
+                        <div class="card-footer border-0 pt-0 d-flex justify-content-between align-items-center">
+                            <small class="text-muted" style="color: var(--text-muted) !important;">{{content.created_at|date:"d M Y"}}</small>   
+                            <div>
+                                <a href="{% url 'content_detail' content.id %}" class="btn btn-sm btn-outline-primary">Görüntüle</a>
+                                <a href="{% url 'update_content' content.id %}" class="btn btn-sm btn-warning"><i class="bi bi-pencil-square"></i>Düzenle</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted">Henüz içerik paylaşmadınız</p>
+                        <a href="{% url 'add_content' %}" class="btn btn-primary">İlk İçeriğini Ekle</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
 </div>
 {% endblock content %}
