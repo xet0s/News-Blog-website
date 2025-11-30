@@ -97,7 +97,7 @@ def update_content(request,content_id):#Varolan içerikleri tekrar düzenlemeyi 
             form.save_m2m()
 
             messages.success(request,"İçerik Güncellendi ve Tekrar Onaya Düştü")
-            return('profile')
+            return redirect('profile')
     else:
         form=ContentForm(instance=content)
     return render(request,'blog/add_content.html',{
