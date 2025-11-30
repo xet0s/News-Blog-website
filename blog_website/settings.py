@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-oc7vv4fo+%jcugw8wv-$(lxvz4zaa2@_=$5_0@7z7xj8r62z13
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["e-shiro.onrender.com","e-shiro.com","www.e-shiro.com"]
+ALLOWED_HOSTS = ["e-shiro.onrender.com","e-shiro.com","www.e-shiro.com","local","127.0.0.1"]
 
 
 # Application definition
