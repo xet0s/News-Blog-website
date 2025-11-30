@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'blog_website.wsgi.application'
 DATABASES = { #Veri Tabanı bağlantısı
     'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'website',
-    'USER': 'admin',         
-    'PASSWORD': '3578',
-    'HOST': '127.0.0.1',
+    'NAME': 'int36dctiveacom_shirodb',
+    'USER': 'int36dctiveacom_shiro',         
+    'PASSWORD': '35781216Ka.',
+    'HOST': '31.186.11.110',
     'PORT': '3306',
     'OPTIONS': {
         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
