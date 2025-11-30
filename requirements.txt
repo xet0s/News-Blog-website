@@ -1,10 +1,24 @@
-Django>=5.0
-Pillow
+# Ana Framework (Listede yoktu, ekledim)
+Django>=4.0
+
+# Sunucu Motoru (Listede yoktu, ekledim)
+gunicorn
+
+# Veritabanı Baglantisi (Listede yoktu, ekledim)
 mysqlclient
-asgiref
-sqlparse
-requests
-urllib3
-certifi
-idna
-charset-normalizer
+
+# Resim isleme (Listede vardi, lazim olabilir)
+Pillow==11.1.0
+
+# HTTP istekleri icin (Listede vardi, lazim olabilir)
+requests==2.32.3
+urllib3==2.3.0
+certifi==2025.1.31
+idna==3.10
+chardet==5.2.0
+
+# Sifreleme/Auth (Listede vardi, lazim olabilir)
+bcrypt==4.2.0
+passlib==1.7.4
+PyJWT==2.10.1
+cryptography==43.0.0
