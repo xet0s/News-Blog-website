@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'blog_website.urls'
@@ -129,6 +130,7 @@ import os
 BASE_DIR_STR=str(BASE_DIR)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR_STR,'static'),]   #siteye static klasörünü dahil etme
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage'"
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
