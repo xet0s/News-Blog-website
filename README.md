@@ -23,6 +23,7 @@ Projeyi kendi cihazınıza kurmak için sırasıyla:
 1-Projeyi klonlayın
 
 2-Sanal ortam kurun
+    
     ```bash
     # Windows
     python -m venv venv
@@ -48,8 +49,9 @@ Projeyi kendi cihazınıza kurmak için sırasıyla:
     # or
     py manage.py runserver
     ```
-5-Verilen localhost linkini tarayıcıda açın
-    `http://127.0.0.1:8000/`
+    
+5-Verilen localhost (`http://127.0.0.1:8000/`) linkini tarayıcıda açın
+    
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # News & Blog Platform
 
