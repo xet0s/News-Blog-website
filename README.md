@@ -7,11 +7,9 @@ Projede konu etiketleri statik olmak yerine dinamik şekilde admin panelinden d�
 🔗 **Canlı Demo** https://e-shiro.com/
 
 ## Kullanılan Teknolojiler
-**Frontend:** Bootstrap 
-
-**Backend:** Django
-
-**Veritabanı:** MySql
+* **Frontend:** Bootstrap 
+* **Backend:** Django
+* **Veritabanı:** MySql
 
 
 ## Mevcut ve Eklenecen özellikler
@@ -38,11 +36,9 @@ The main goal of this project is to create a news or blog platform where specifi
 ## 🛠️ Tech Stack
 
 * **Frontend:** Bootstrap
-* 
 * **Backend:** Django
-* 
 * **Database:** MySQL
-* 
+
 
 ## 🚀 Features
 
