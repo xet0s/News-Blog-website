@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     #blog uygulaması
     'blog',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -80,10 +81,10 @@ WSGI_APPLICATION = 'blog_website.wsgi.application'
 DATABASES = { #Veri Tabanı bağlantısı
     'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': 'int36dctiveacom_shirodb',
-    'USER': 'int36dctiveacom_shiro',         
-    'PASSWORD': '35781216Ka.',
-    'HOST': '31.186.11.110',
+    'NAME': 'local_news_db',
+    'USER': 'admin',         
+    'PASSWORD': '3578',
+    'HOST': 'localhost',
     'PORT': '3306',
     'OPTIONS': {
         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
@@ -142,3 +143,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL="/" #Başarılı girişte ana domaine yönlendirir
 LOGOUT_REDIRECT_URL="/"#Başarılı çıkışta ana domaine döner
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'

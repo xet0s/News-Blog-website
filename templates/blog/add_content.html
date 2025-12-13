@@ -11,6 +11,8 @@
 
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+
+            {{form.media}}
             
             <div class="mb-3">
                 <label class="form-label fw-bold">Başlık</label>

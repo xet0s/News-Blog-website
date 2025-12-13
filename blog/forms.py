@@ -3,6 +3,7 @@ from django.contrib.auth.forms  import UserCreationForm
 from django                     import forms
 from django.forms import ModelForm
 from .models import Content,Profile
+from django_summernote.widgets import SummernoteWidget
 
 class UserRegisterForm(UserCreationForm): #Django nun kendi kayıt class'ı
 
@@ -20,11 +21,11 @@ class ContentForm(ModelForm):
                 'class':'form-control',
                 'placeholder':'Haber Başlığını buraya giriniz'
             }),
-            'content':forms.Textarea(attrs={
-                'class':'form-control',
-                'rows':15,
-                'placeholder':'Haber detaylarını buraya giriniz'
+            'content':SummernoteWidget(attrs={
+                'class':'form-content',
+                'placeholder':'Haber içeriğini giriniz'
             }),
+            
             'post_tag':forms.Select(attrs={
                 'class':'form-select'
             }),
