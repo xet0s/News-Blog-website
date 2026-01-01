@@ -206,7 +206,7 @@ footer {
 }
 
 /* ==========================================================================
-   6. HABER KARTLARI VE BUTON ÖZELLEŞTİRMELERİ
+        6. HABER KARTLARI VE BUTON ÖZELLEŞTİRMELERİ
    ========================================================================== */
 
 .card {
@@ -222,7 +222,10 @@ footer {
     transform: translateY(-5px); /* Hafif kalkış */
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
-
+img {
+    max-width: 100%;
+    height: auto;
+}
 /* 2. Resim Alanı (Standart Boyut) */
 .card-img-top {
     height: 200px;       /* Yüksekliği sabitle */
@@ -389,4 +392,47 @@ select,
 .footer-bar {
     color: rgba(255, 255, 255, 0.7);
     
+}
+.note-editor.note-frame {
+    border-radius: 10px !important;  /* Başlık kutusu gibi oval yapar */
+    border: 1px solid #ced4da !important; /* Standart gri çerçeve rengi */
+    box-shadow: none !important;     /* Gereksiz gölgeleri kaldırır */
+    width: 100% !important;          /* Genişliği kapsayıcıya tam yayar */
+    overflow: hidden;                /* Taşmaları engeller */
+}
+
+/* Editörün Araç Çubuğu (Toolbar) Rengi */
+.note-editor .note-toolbar {
+    background-color: #f8f9fa;       /* Hafif gri/beyaz arka plan */
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 10px 10px 0 0;    /* Sadece üst köşeleri oval yapar */
+}
+
+/* Yazı Yazılan Alanın Arka Planı */
+.note-editor .note-editing-area {
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;    /* Alt köşeleri oval yapar */
+}
+
+/* Durum Çubuğunu (Resize bar) Gizle (İsteğe bağlı, daha temiz görünür) */
+.note-status-output {
+    display: none;
+}
+.note-resizebar {
+    display: none; /* Elle büyütüp küçültme çubuğunu gizler */
+}
+
+/* Logo Temel Ayarları (Varsayılan / Açık Mod) */
+.site-logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    transition: filter 0.3s ease; /* Geçişlerde yumuşatma */
+}
+
+/* Koyu Mod Senaryoları (Logo Beyazlaşır) */
+body.dark-mode .site-logo,
+[data-theme="dark"] .site-logo,
+.navbar-dark .site-logo {
+    filter: invert(1) brightness(200%);
 }

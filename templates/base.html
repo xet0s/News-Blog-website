@@ -3,7 +3,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         {% load static %}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
         rel="stylesheet" 
@@ -12,14 +12,14 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         
         <title>{% block title %}e-shiro{% endblock title %}</title>
-        
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.png' %}">
         
     </head>
     <body>
         <div class="site-container">
             <header>
                 <div class="logo">
-                    e-shiro
+                    <img src="{% static 'img/eshiro_logo.png' %}" alt="Site Logosu" class="site-logo">
                 </div>
                 <nav class="navigator">
                     <a href="{% url 'content_list' %}" class="nav-button">Anasayfa</a>

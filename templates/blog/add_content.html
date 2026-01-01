@@ -33,7 +33,7 @@
             <div class="mb-3">
                 <div class="mb-4">
                     <label for="id_image" class="form-label fw-bold">Kapak Görseli</label>
-                    <input type="file" name="image" class="form-control" id="id_image" accept="image/*">
+                    {{ form.image }}
                     {% if form.image.errors%}
                         <div class="text-danger small">{{form.image.errors.0}}</div>
                     {% endif %}

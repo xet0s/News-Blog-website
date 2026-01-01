@@ -1,5 +1,5 @@
 from . import views
-from django.urls import path
+from django.urls import path,include
 from django.contrib.auth import views as auth_views
 from blog import views as blog_views
 
@@ -19,5 +19,7 @@ urlpatterns = [
     path('update_content/<int:content_id>/', blog_views.update_content, name='update_content'),#içerik düzenleme
     
     path('hakkimizda/', blog_views.about, name='about'),#Hakkımda
+
+    path('summernote/', include('django_summernote.urls')),
 
 ]

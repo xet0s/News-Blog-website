@@ -145,3 +145,21 @@ LOGIN_REDIRECT_URL="/" #Başarılı girişte ana domaine yönlendirir
 LOGOUT_REDIRECT_URL="/"#Başarılı çıkışta ana domaine döner
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+SUMMERNOTE_CONFIG = {
+    'iframe': True,
+    'summernote': {
+        'width': '100%',     # Kutunun tamamını kaplamasını sağlar
+        'height': '400',     # Yükseklik
+        'toolbar': [         # İstersen menüyü sadeleştirebilirsin
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    },
+    'css': (
+        '//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css',
+    ),
+}
