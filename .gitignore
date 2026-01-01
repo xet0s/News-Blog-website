@@ -21,3 +21,5 @@ media/
 settings_local.py
 local_settings.py
 .env
+
+kurulum.txt
